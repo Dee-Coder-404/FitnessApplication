@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness App - Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #f8f9fa, #dee2e6);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 50px 20px;
+            position: relative; /* Needed for absolute positioning */
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            margin: 10px 0 30px 0;
+            padding: 15px 25px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .button-form button {
+            width: 100%;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-form button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        /* Logout Button Styles */
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logout Button -->
+    <form th:action="@{/logout}" method="get" style="margin: 0;">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+
+    <h1>Welcome to Your Fitness Dashboard</h1>
+
+    <!-- Optional success/info message -->
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+
+    <div class="button-container">
+        <form th:action="@{/workout/create}" method="get" class="button-form">
+            <button type="submit">Create Workout</button>
+        </form>
+
+        <form th:action="@{/workout/view}" method="get" class="button-form">
+            <button type="submit">View Workouts</button>
+        </form>
+
+        <form th:action="@{/goals/create}" method="get" class="button-form">
+            <button type="submit">Create Goals</button>
+        </form>
+
+        <form th:action="@{/goals/view}" method="get" class="button-form">
+            <button type="submit">View Goals</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2025 Fitness App. All rights reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Goal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .home-btn {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .home-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 15px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Create Goal</h2>
+
+    <p class="message" th:text="${message}"></p>
+
+    <form th:action="@{/goals/save}" method="post" th:object="${goal}">
+        <label for="title">Title</label>
+        <input type="text" id="title" th:field="*{title}" placeholder="e.g. Lose 5kg" required />
+
+        <label for="description">Description</label>
+        <textarea id="description" th:field="*{description}" rows="3" placeholder="Details about your goal" required></textarea>
+
+        <label for="targetValue">Target Value</label>
+        <input type="number" step="0.01" id="targetValue" th:field="*{targetValue}" placeholder="e.g. 70" required />
+
+        <label for="status">Status</label>
+        <select id="status" th:field="*{status}" required>
+            <option value="">-- Select Status --</option>
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+
+        <button type="submit" class="btn">Create Goal</button>
+    </form>
+
+</div>
+
+</body>
+</html>

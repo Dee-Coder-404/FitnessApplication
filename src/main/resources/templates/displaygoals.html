@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Goals</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 90%;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 14px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .home-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            padding: 12px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            text-align: center;
+            font-weight: bold;
+            color: green;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Your Goals</h2>
+
+    <!-- Optional message display -->
+    <div class="message" th:if="${message}" th:text="${message}"></div>
+
+    <!-- Table to display goals -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Target Value</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="goal : ${goals}">
+                <td th:text="${goal.id}"></td>
+                <td th:text="${goal.title}"></td>
+                <td th:text="${goal.description}"></td>
+                <td th:text="${goal.targetValue}"></td>
+                <td th:text="${goal.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Back to Home button -->
+    <a th:href="@{/home}" class="home-button">Back to Home</a>
+</div>
+</body>
+</html>
